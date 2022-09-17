@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ChangeEvent, useMemo, useState } from "react";
+import Crypto from "crypto-js";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const domains = process.env.REACT_APP_DOMAINS.split(",");
+
+export default function App() {
+	const [email, setEmail] = useState("");
+	const [domain, setDomain] = useState(domains.at(0) ?? "");
+
+	const hash = useMemo(
+		() =>
+			Crypto.MD5(`${process.env.REACT_APP_SECRET}:${email}`)
+				.toString()
+				.slice(0, 8),
+		[email],
+	);
+
+	const handleEmail = (event: ChangeEvent<HTMLInputElement>) =>
+		setEmail(event.target.value);
+	const handleDomain = (event: ChangeEvent<HTMLSelectElement>) =>
+		setDomain(event.target.value);
+
+	return (
+		<main className="App">
+			<div className="Input">
+				<input
+					type="text"
+					onChange={handleEmail}
+					placeholder="domain"
+					value={email}
+				/>
+				<select onChange={handleDomain} value={domain}>
+					{domains.map((d) => (
+						<option key={d}>{d}</option>
+					))}
+				</select>
+			</div>
+
+			<h2>{`${email || "domain"}.${hash}@${domain}`}</h2>
+		</main>
+	);
 }
-
-export default App;
