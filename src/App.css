@@ -16,6 +16,7 @@ input {
   padding: 0.5em;
   border: 2px solid var(--color-accent);
   outline: 0;
+  border-radius: 5px;
 }
 
 input:focus {
