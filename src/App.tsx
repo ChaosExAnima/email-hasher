@@ -29,6 +29,7 @@ export default function App() {
 					onChange={handleEmail}
 					placeholder="domain"
 					value={email}
+					autoFocus
 				/>
 				<select onChange={handleDomain} value={domain}>
 					{domains.map((d) => (
