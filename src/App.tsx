@@ -17,7 +17,7 @@ export default function App() {
 	);
 
 	const handleEmail = (event: ChangeEvent<HTMLInputElement>) =>
-		setEmail(event.target.value);
+		setEmail(event.target.value.toLowerCase().replaceAll(/\W/g, ""));
 	const handleDomain = (event: ChangeEvent<HTMLSelectElement>) =>
 		setDomain(event.target.value);
 
