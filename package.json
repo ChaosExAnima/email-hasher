@@ -20,9 +20,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:docker": "docker run --rm -it --init -p 3000:80 chaosexanima/email-hasher",
+    "start:docker": "docker run --rm -it -p 3000:80 chaosexanima/email-hasher",
     "build": "react-scripts build",
-    "postbuild": "docker build -t=chaosexanima/email-hasher .",
+    "build:docker": "docker build -t=chaosexanima/email-hasher .",
+    "postbuild": "yarn build:docker",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "hub": "docker push chaosexanima/email-hasher"
