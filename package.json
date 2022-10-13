@@ -10,10 +10,10 @@
     "vite": "^3.1.4"
   },
   "scripts": {
+    "preinstall": "npx -y only-allow pnpm",
     "start": "vite",
     "start:docker": "docker run --rm -it -p 3000:80 chaosexanima/email-hasher",
-    "build": "vite build",
-    "postbuild": "yarn build:docker",
+    "build": "vite build && pnpm build:docker",
     "build:docker": "docker build -t=chaosexanima/email-hasher .",
     "preview": "vite preview",
     "hub": "docker push chaosexanima/email-hasher"
