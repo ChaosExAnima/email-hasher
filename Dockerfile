@@ -1,3 +1,6 @@
-FROM --platform=amd64 joseluisq/static-web-server:2-alpine
+FROM --platform=amd64 nginx:alpine
 
-COPY build /public
+COPY build /usr/share/nginx/html
+
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/emails.conf
