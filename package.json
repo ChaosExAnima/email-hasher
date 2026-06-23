@@ -7,7 +7,7 @@
     "@types/node": "^16.7.13",
     "crypto-js": "^4.2.0",
     "typescript": "^4.4.2",
-    "vite": "^6.4.2"
+    "vite": "^6.4.3"
   },
   "scripts": {
     "preinstall": "npx -y only-allow pnpm",
